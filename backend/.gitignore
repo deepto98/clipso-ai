@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Alembic
+alembic/versions/
+
+# Pytest
+.cache/
+
+# VSCode/IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+pgdata/
+
+# Logs
+*.log
+
+# Misc
+*.bak
+*.tmp
+
+# Jupyter
+.ipynb_checkpoints/

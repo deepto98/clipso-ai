@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+    env_file:
+      - ./backend/.env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    restart: unless-stopped
+    volumes:
+      - ./backend:/app
+
+  db:
+    image: postgres:15
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: clipso
+      POSTGRES_USER: clipso
+      POSTGRES_PASSWORD: clipso
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

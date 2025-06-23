@@ -1,0 +1,284 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Define basic styling without depending on Tailwind */
+:root {
+  --background-color: rgb(10, 10, 24);
+  --text-color: rgb(240, 240, 245);
+  --primary-color: rgb(125, 80, 230);
+  --secondary-color: rgb(20, 30, 60);
+  --accent-color: rgb(80, 160, 255);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --radius: 0.75rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-feature-settings: "rlig" 1, "calt" 1;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* 3D Glow Background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: 
+    radial-gradient(circle at 10% 10%, rgba(125, 80, 230, 0.05) 0%, transparent 60%),
+    radial-gradient(circle at 90% 20%, rgba(0, 80, 160, 0.05) 0%, transparent 60%),
+    radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+/* Basic utility classes */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.card {
+  background-color: rgba(30, 40, 70, 0.3);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+}
+
+.btn {
+  position: relative;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(125, 80, 230, 0.3);
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  transform: rotate(30deg);
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+.btn:hover::after {
+  opacity: 1;
+}
+
+/* Spacing utilities */
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+.mb-8 { margin-bottom: 2rem; }
+.mb-10 { margin-bottom: 2.5rem; }
+
+.p-4 { padding: 1rem; }
+.p-6 { padding: 1.5rem; }
+
+.flex { display: flex; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-2 { gap: 0.5rem; }
+.gap-4 { gap: 1rem; }
+.gap-6 { gap: 1.5rem; }
+.gap-8 { gap: 2rem; }
+
+/* Typography */
+.text-lg { font-size: 1.125rem; }
+.text-xl { font-size: 1.25rem; }
+.text-2xl { font-size: 1.5rem; }
+.text-3xl { font-size: 1.875rem; }
+.text-4xl { font-size: 2.25rem; }
+
+.font-bold { font-weight: 700; }
+.font-medium { font-weight: 500; }
+
+/* Custom components */
+.gradient-bg {
+  background: linear-gradient(to bottom right, rgb(95, 40, 170), rgb(60, 30, 150), rgb(0, 80, 160));
+}
+
+.text-gradient {
+  background: linear-gradient(to right, rgb(180, 120, 250), rgb(100, 180, 255));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Enhanced glassmorphism */
+.glass-card {
+  background: rgba(20, 20, 40, 0.2);
+  backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  box-shadow: 0 8px 40px rgba(125, 80, 230, 0.15);
+  border: 1px solid rgba(125, 80, 230, 0.2);
+}
+
+/* Motion effects */
+.hover-scale {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Cosmic gradient with aurora effects */
+.cosmic-gradient {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.cosmic-gradient::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    linear-gradient(
+      45deg,
+      rgba(125, 80, 230, 0.1) 0%,
+      rgba(0, 80, 160, 0.1) 25%,
+      rgba(0, 0, 0, 0) 50%,
+      rgba(125, 80, 230, 0.1) 75%,
+      rgba(0, 80, 160, 0.1) 100%
+    );
+  z-index: 0;
+  animation: aurora 8s linear infinite;
+}
+
+@keyframes aurora {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Card gradient */
+.card-gradient {
+  background: linear-gradient(145deg, rgba(30, 40, 70, 0.6) 0%, rgba(20, 30, 60, 0.8) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Button glow */
+.button-glow {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.button-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(125, 80, 230, 0.8) 0%, rgba(100, 180, 255, 0.8) 100%);
+  z-index: -1;
+}
+
+.button-glow::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(90deg, rgba(125, 80, 230, 0.5) 0%, rgba(100, 180, 255, 0.5) 100%);
+  filter: blur(10px);
+  z-index: -2;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.button-glow:hover::after {
+  opacity: 1;
+}
+
+/* Shimmering effect */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) rotate(30deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(30deg);
+  }
+}
+
+/* 3D Card Effect */
+.card-3d {
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+  transition: transform 0.3s ease;
+}
